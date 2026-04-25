@@ -4,200 +4,542 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>English Triana | Speak English Las Palmas</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-body {
-  margin:0;
-  font-family: Arial, sans-serif;
-  background:#f5f5f5;
-  color:#222;
-}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-.container {
-  max-width:800px;
-  margin:auto;
-  padding:20px;
-}
+  :root {
+    --cream: #FAF7F2;
+    --warm-white: #FFFFFF;
+    --sand: #E8DDD0;
+    --terracotta: #C4633A;
+    --terracotta-dark: #A34F28;
+    --charcoal: #1E1A16;
+    --mid: #6B5F54;
+    --accent: #25D366;
+    --accent-dark: #1DA851;
+    --shadow: rgba(30,26,22,0.1);
+  }
 
-header {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:20px;
-}
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    font-size: 16px;
+    line-height: 1.6;
+    padding-bottom: 90px;
+  }
 
-h1 {
-  font-size:28px;
-}
+  /* ─── HEADER ─── */
+  header {
+    background: var(--charcoal);
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
 
-.cta {
-  display:block;
-  background:#25D366;
-  color:white;
-  padding:14px;
-  text-align:center;
-  text-decoration:none;
-  border-radius:6px;
-  margin:20px 0;
-  font-weight:bold;
-}
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--cream);
+    letter-spacing: 0.02em;
+  }
 
-.section {
-  background:white;
-  padding:20px;
-  border-radius:10px;
-  margin-bottom:15px;
-}
+  .logo span {
+    color: var(--terracotta);
+  }
 
-button {
-  padding:8px 12px;
-  border:none;
-  cursor:pointer;
-}
+  .lang-switcher {
+    display: flex;
+    gap: 4px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 6px;
+    padding: 3px;
+  }
 
-.active {
-  background:#222;
-  color:white;
-}
+  .lang-switcher button {
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.05em;
+  }
 
-/* LANGUAGE FIX */
-.lang-es { display:none; }
-body.show-es .lang-en { display:none; }
-body.show-es .lang-es { display:block; }
+  .lang-switcher button.active {
+    background: var(--terracotta);
+    color: white;
+  }
 
-.fixed-cta {
-  position:fixed;
-  bottom:10px;
-  left:10px;
-  right:10px;
-}
+  /* ─── HERO ─── */
+  .hero {
+    background: var(--charcoal);
+    padding: 48px 24px 56px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
 
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 70% 30%, rgba(196,99,58,0.2) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 16px;
+  }
+
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 7vw, 46px);
+    font-weight: 900;
+    color: var(--cream);
+    line-height: 1.15;
+    max-width: 560px;
+    margin: 0 auto 20px;
+  }
+
+  .hero p {
+    color: rgba(250,247,242,0.65);
+    font-size: 16px;
+    max-width: 420px;
+    margin: 0 auto 32px;
+    font-weight: 300;
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--accent);
+    color: white;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 4px 20px rgba(37,211,102,0.25);
+  }
+
+  .hero-cta:hover { background: var(--accent-dark); transform: translateY(-1px); }
+
+  .hero-cta svg { flex-shrink: 0; }
+
+  /* ─── PHOTO PLACEHOLDERS ─── */
+  .photos-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 24px 16px;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .photo-card {
+    border-radius: 12px;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    position: relative;
+    background: var(--sand);
+    box-shadow: 0 2px 12px var(--shadow);
+  }
+
+  .photo-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: var(--mid);
+  }
+
+  .photo-placeholder svg {
+    opacity: 0.4;
+  }
+
+  .photo-label {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    opacity: 0.6;
+  }
+
+  .photo-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0; right: 0;
+    background: linear-gradient(transparent, rgba(30,26,22,0.65));
+    color: white;
+    font-size: 13px;
+    font-weight: 500;
+    padding: 20px 14px 12px;
+    opacity: 0;
+    /* Uncomment when you add real images: opacity: 1; */
+  }
+
+  /* ─── CONTENT SECTIONS ─── */
+  .content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+
+  .card {
+    background: var(--warm-white);
+    border-radius: 14px;
+    padding: 28px 24px;
+    margin-bottom: 14px;
+    box-shadow: 0 1px 4px var(--shadow);
+    border: 1px solid rgba(232,221,208,0.6);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .card-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: rgba(196,99,58,0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--terracotta);
+  }
+
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--charcoal);
+  }
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  ul li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 15px;
+    color: var(--mid);
+  }
+
+  ul li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--terracotta);
+    flex-shrink: 0;
+    margin-top: 7px;
+  }
+
+  .location-map {
+    width: 100%;
+    aspect-ratio: 16/7;
+    background: var(--sand);
+    border-radius: 10px;
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--mid);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    border: 2px dashed rgba(196,99,58,0.25);
+  }
+
+  .about-inner {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+
+  .avatar {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: var(--sand);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--mid);
+    border: 3px solid rgba(196,99,58,0.2);
+  }
+
+  .about-text p {
+    font-size: 15px;
+    color: var(--mid);
+    line-height: 1.65;
+  }
+
+  .tag-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-top: 14px;
+  }
+
+  .tag {
+    background: rgba(196,99,58,0.08);
+    color: var(--terracotta-dark);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+  }
+
+  /* ─── FIXED CTA ─── */
+  .fixed-bar {
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    background: var(--warm-white);
+    border-top: 1px solid var(--sand);
+    padding: 12px 16px;
+    z-index: 200;
+    box-shadow: 0 -4px 20px var(--shadow);
+  }
+
+  .fixed-cta {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: var(--accent);
+    color: white;
+    padding: 14px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: background 0.2s;
+  }
+
+  .fixed-cta:hover { background: var(--accent-dark); }
+
+  /* ─── LANGUAGE TOGGLE ─── */
+  .lang-es { display: none; }
+  body.show-es .lang-en { display: none; }
+  body.show-es .lang-es { display: block; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 480px) {
+    .about-inner { flex-direction: column; }
+    .photos-row { gap: 8px; }
+  }
 </style>
 </head>
-
 <body>
 
-<div class="container">
-
+<!-- HEADER -->
 <header>
-  <strong>English Triana</strong>
-  <div>
+  <div class="logo">English<span>Triana</span></div>
+  <div class="lang-switcher">
     <button id="enBtn" class="active">EN</button>
     <button id="esBtn">ES</button>
   </div>
 </header>
 
 <!-- HERO -->
-<div class="section">
+<div class="hero">
   <div class="lang-en">
-    <h1>Speak English with confidence in central Las Palmas</h1>
-    <p>Flexible speaking classes near Triana and Vegueta with a native British teacher.</p>
+    <div class="hero-eyebrow">Native British Teacher · Las Palmas</div>
+    <h1>Speak English with real confidence</h1>
+    <p>Flexible speaking classes in central Las Palmas, near Triana and Vegueta.</p>
   </div>
-
   <div class="lang-es">
-    <h1>Habla inglés con confianza en el centro de Las Palmas</h1>
-    <p>Clases flexibles de conversación cerca de Triana y Vegueta con profesor nativo británico.</p>
+    <div class="hero-eyebrow">Profesor Nativo Británico · Las Palmas</div>
+    <h1>Habla inglés con verdadera confianza</h1>
+    <p>Clases flexibles de conversación en el centro de Las Palmas, cerca de Triana y Vegueta.</p>
   </div>
-
-  <a class="cta whatsapp">WhatsApp</a>
+  <a class="hero-cta whatsapp" href="#">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.054 23.5l5.774-1.515A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.797 9.797 0 01-5.001-1.371l-.359-.213-3.429.9.916-3.338-.234-.374A9.796 9.796 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+    <span class="lang-en">Message me on WhatsApp</span>
+    <span class="lang-es">Escríbeme por WhatsApp</span>
+  </a>
 </div>
 
-<!-- HOW IT WORKS -->
-<div class="section">
-  <div class="lang-en">
-    <h2>How it works</h2>
-    <ul>
-      <li>You tell me your level and availability</li>
-      <li>I offer available morning slots</li>
-      <li>You join a session adapted to your needs</li>
-    </ul>
+<!-- PHOTO PLACEHOLDERS -->
+<div class="photos-row">
+  <div class="photo-card">
+    <img src="https://raw.githubusercontent.com/dixonbruce/EnglishTriana/main/phonebox_calle_triana.png" alt="Calle Triana, Las Palmas" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="photo-caption" style="opacity:1;">
+      <span class="lang-en">Triana & Vegueta, Las Palmas</span>
+      <span class="lang-es">Triana y Vegueta, Las Palmas</span>
+    </div>
   </div>
+  <div class="photo-card">
+    <img src="https://raw.githubusercontent.com/dixonbruce/EnglishTriana/main/classroom.png" alt="The classroom" style="width:100%;height:100%;object-fit:cover;display:block;">
+    <div class="photo-caption" style="opacity:1;">
+      <span class="lang-en">A relaxed space to learn</span>
+      <span class="lang-es">Un espacio tranquilo para aprender</span>
+    </div>
+  </div>
+</div>
 
-  <div class="lang-es">
-    <h2>Cómo funciona</h2>
-    <ul>
+<!-- CONTENT -->
+<div class="content">
+
+  <!-- HOW IT WORKS -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+      </div>
+      <h2 class="lang-en">How it works</h2>
+      <h2 class="lang-es">Cómo funciona</h2>
+    </div>
+    <ul class="lang-en">
+      <li>Tell me your level and when you're available</li>
+      <li>I'll offer you morning slots that fit</li>
+      <li>Join a session adapted to your needs</li>
+    </ul>
+    <ul class="lang-es">
       <li>Me dices tu nivel y disponibilidad</li>
       <li>Te ofrezco horarios disponibles por la mañana</li>
       <li>Te unes a sesiones adaptadas a tus necesidades</li>
     </ul>
   </div>
-</div>
 
-<!-- WHAT YOU GET -->
-<div class="section">
-  <div class="lang-en">
-    <h2>What you get</h2>
-    <ul>
-      <li>Speaking-focused classes</li>
-      <li>Real correction and feedback</li>
-      <li>Small groups or individual classes</li>
+  <!-- WHAT YOU GET -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+      </div>
+      <h2 class="lang-en">What you get</h2>
+      <h2 class="lang-es">Qué incluye</h2>
+    </div>
+    <ul class="lang-en">
+      <li>Speaking-focused classes — not just grammar</li>
+      <li>Real correction and honest feedback</li>
+      <li>Small groups or one-to-one sessions</li>
     </ul>
-  </div>
-
-  <div class="lang-es">
-    <h2>Qué incluye</h2>
-    <ul>
-      <li>Clases centradas en hablar</li>
-      <li>Corrección real en tiempo real</li>
+    <ul class="lang-es">
+      <li>Clases centradas en hablar, no solo gramática</li>
+      <li>Corrección real y feedback honesto</li>
       <li>Grupos reducidos o clases individuales</li>
     </ul>
   </div>
-</div>
 
-<!-- LOCATION -->
-<div class="section">
-  <div class="lang-en">
-    <h2>Location</h2>
-    <p>Central Las Palmas, near Triana and Vegueta.<br>
-    (Replace with: “Just off Calle Mayor de Triana”)</p>
+  <!-- LOCATION -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <h2 class="lang-en">Location</h2>
+      <h2 class="lang-es">Ubicación</h2>
+    </div>
+    <p class="lang-en" style="color:var(--mid);font-size:15px;">Central Las Palmas, near Triana and Vegueta. Easy to reach by bus or on foot from the city centre.</p>
+    <p class="lang-es" style="color:var(--mid);font-size:15px;">Centro de Las Palmas, cerca de Triana y Vegueta. Fácil acceso en guagua o a pie desde el centro.</p>
+    <div class="location-map">
+      <span class="lang-en">📍 Map coming soon</span>
+      <span class="lang-es">📍 Mapa próximamente</span>
+    </div>
   </div>
 
-  <div class="lang-es">
-    <h2>Ubicación</h2>
-    <p>Centro de Las Palmas, cerca de Triana y Vegueta.<br>
-    (Ej: “junto a la Calle Mayor de Triana”)</p>
+  <!-- ABOUT -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-icon">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <h2 class="lang-en">About me</h2>
+      <h2 class="lang-es">Sobre mí</h2>
+    </div>
+    <div class="about-inner">
+      <div class="avatar">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div class="about-text">
+        <p class="lang-en">Native British English teacher with 16 years' experience in Spain. I run my own academy and specialise in helping adults speak fluently and confidently in real situations.</p>
+        <p class="lang-es">Profesor nativo británico con 16 años de experiencia en España. Dirijo mi propia academia y me especializo en ayudar a adultos a hablar inglés con fluidez en situaciones reales.</p>
+        <div class="tag-row">
+          <span class="tag lang-en">Native British</span>
+          <span class="tag lang-en">16 Years' Experience</span>
+          <span class="tag lang-en">Speaking Specialist</span>
+          <span class="tag lang-es">Nativo Británico</span>
+          <span class="tag lang-es">16 Años de Experiencia</span>
+          <span class="tag lang-es">Especialista en Conversación</span>
+        </div>
+      </div>
+    </div>
   </div>
-</div>
 
-<!-- ABOUT -->
-<div class="section">
-  <div class="lang-en">
-    <h2>About me</h2>
-    <p>Native British English teacher with 16 years’ experience in Spain. I run my own academy and specialise in helping students speak fluently and confidently.</p>
-  </div>
+</div><!-- /content -->
 
-  <div class="lang-es">
-    <h2>Sobre mí</h2>
-    <p>Profesor nativo británico con 16 años de experiencia en España. Dirijo mi propia academia y me especializo en ayudar a hablar inglés con fluidez.</p>
-  </div>
-</div>
-
-<a class="cta whatsapp fixed-cta">Message me on WhatsApp</a>
-
+<!-- FIXED BAR -->
+<div class="fixed-bar">
+  <a class="fixed-cta whatsapp" href="#">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.127.558 4.126 1.532 5.862L.054 23.5l5.774-1.515A11.946 11.946 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.797 9.797 0 01-5.001-1.371l-.359-.213-3.429.9.916-3.338-.234-.374A9.796 9.796 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+    <span class="lang-en">Message me on WhatsApp</span>
+    <span class="lang-es">Escríbeme por WhatsApp</span>
+  </a>
 </div>
 
 <script>
-const phone = "34646555552";
+  const phone = "34646555552";
+  const messages = {
+    en: "Hi, I'm interested in your English speaking classes in Triana. What availability do you have?",
+    es: "Hola, estoy interesado en tus clases de inglés en Triana. ¿Qué horarios tienes disponibles?"
+  };
 
-const messages = {
-  en: "Hi, I'm interested in your English speaking classes in Triana. What availability do you have?",
-  es: "Hola, estoy interesado en tus clases de inglés en Triana. ¿Qué horarios tienes disponibles?"
-};
+  let currentLang = "en";
 
-function setLang(lang) {
-  document.body.classList.toggle("show-es", lang === "es");
-  document.getElementById("enBtn").classList.toggle("active", lang === "en");
-  document.getElementById("esBtn").classList.toggle("active", lang === "es");
+  function setLang(lang) {
+    currentLang = lang;
+    document.body.classList.toggle("show-es", lang === "es");
+    document.getElementById("enBtn").classList.toggle("active", lang === "en");
+    document.getElementById("esBtn").classList.toggle("active", lang === "es");
+    document.querySelectorAll(".whatsapp").forEach(el => {
+      el.href = `https://wa.me/${phone}?text=${encodeURIComponent(messages[lang])}`;
+    });
+  }
 
-  document.querySelectorAll(".whatsapp").forEach(el => {
-    el.href = `https://wa.me/${phone}?text=${encodeURIComponent(messages[lang])}`;
-  });
-}
+  document.getElementById("enBtn").onclick = () => setLang("en");
+  document.getElementById("esBtn").onclick = () => setLang("es");
 
-document.getElementById("enBtn").onclick = () => setLang("en");
-document.getElementById("esBtn").onclick = () => setLang("es");
-
-setLang("en");
+  setLang("en");
 </script>
 
 </body>
