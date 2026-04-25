@@ -1,175 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Native English Speaking Classes in Triana, Las Palmas</title>
-  <meta name="description" content="Flexible English speaking classes in central Las Palmas with a native British teacher. Small groups or individual sessions, focused on fluency, confidence and real correction." />
-  <style>
-    :root {
-      --bg: #f7f3ec;
-      --card: #ffffff;
-      --text: #1f2933;
-      --muted: #5d6673;
-      --accent: #0f766e;
-      --accent-dark: #115e59;
-      --border: #e2ddd3;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English Triana | Speak English Las Palmas</title>
 
-    * { box-sizing: border-box; }
+<style>
+body {
+  margin:0;
+  font-family: Arial, sans-serif;
+  background:#f5f5f5;
+  color:#222;
+}
 
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.55;
-    }
+.container {
+  max-width:800px;
+  margin:auto;
+  padding:20px;
+}
 
-    .page {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 20px;
-    }
+header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:20px;
+}
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      padding: 12px 0 28px;
-    }
+h1 {
+  font-size:28px;
+}
 
-    .brand {
-      font-weight: 750;
-      letter-spacing: -0.02em;
-      font-size: 1.1rem;
-    }
+.cta {
+  display:block;
+  background:#25D366;
+  color:white;
+  padding:14px;
+  text-align:center;
+  text-decoration:none;
+  border-radius:6px;
+  margin:20px 0;
+  font-weight:bold;
+}
 
-    .language-toggle {
-      display: flex;
-      gap: 6px;
-      background: rgba(255,255,255,0.7);
-      padding: 4px;
-      border: 1px solid var(--border);
-      border-radius: 999px;
-    }
+.section {
+  background:white;
+  padding:20px;
+  border-radius:10px;
+  margin-bottom:15px;
+}
 
-    .language-toggle button {
-      border: 0;
-      background: transparent;
-      padding: 7px 12px;
-      border-radius: 999px;
-      cursor: pointer;
-      font-weight: 650;
-      color: var(--muted);
-    }
+button {
+  padding:8px 12px;
+  border:none;
+  cursor:pointer;
+}
 
-    .language-toggle button.active {
-      background: var(--accent);
-      color: white;
-    }
+.active {
+  background:#222;
+  color:white;
+}
 
-    .hero {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 28px;
-      align-items: center;
-      padding: 34px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      box-shadow: 0 18px 50px rgba(31,41,51,0.08);
-    }
+/* LANGUAGE FIX */
+.lang-es { display:none; }
+body.show-es .lang-en { display:none; }
+body.show-es .lang-es { display:block; }
 
-    h1 {
-      margin: 0 0 16px;
-      font-size: clamp(2.2rem, 6vw, 4.2rem);
-      line-height: 0.98;
-      letter-spacing: -0.055em;
-    }
+.fixed-cta {
+  position:fixed;
+  bottom:10px;
+  left:10px;
+  right:10px;
+}
 
-    .lead {
-      font-size: 1.2rem;
-      color: var(--muted);
-      margin: 0 0 22px;
-      max-width: 650px;
-    }
+</style>
+</head>
 
-    .trust-line {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 18px 0 24px;
-    }
+<body>
 
-    .pill {
-      background: #eef8f6;
-      color: var(--accent-dark);
-      border: 1px solid #cce9e5;
-      border-radius: 999px;
-      padding: 8px 12px;
-      font-size: 0.92rem;
-      font-weight: 650;
-    }
+<div class="container">
 
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      align-items: center;
-    }
+<header>
+  <strong>English Triana</strong>
+  <div>
+    <button id="enBtn" class="active">EN</button>
+    <button id="esBtn">ES</button>
+  </div>
+</header>
 
-    .button {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 48px;
-      padding: 13px 18px;
-      border-radius: 14px;
-      text-decoration: none;
-      font-weight: 750;
-      transition: 0.18s ease;
-    }
+<!-- HERO -->
+<div class="section">
+  <div class="lang-en">
+    <h1>Speak English with confidence in central Las Palmas</h1>
+    <p>Flexible speaking classes near Triana and Vegueta with a native British teacher.</p>
+  </div>
 
-    .button.primary {
-      background: var(--accent);
-      color: white;
-    }
+  <div class="lang-es">
+    <h1>Habla inglés con confianza en el centro de Las Palmas</h1>
+    <p>Clases flexibles de conversación cerca de Triana y Vegueta con profesor nativo británico.</p>
+  </div>
 
-    .button.primary:hover { background: var(--accent-dark); }
+  <a class="cta whatsapp">WhatsApp</a>
+</div>
 
-    .button.secondary {
-      color: var(--accent-dark);
-      border: 1px solid #b8ded8;
-      background: #f1fbf9;
-    }
+<!-- HOW IT WORKS -->
+<div class="section">
+  <div class="lang-en">
+    <h2>How it works</h2>
+    <ul>
+      <li>You tell me your level and availability</li>
+      <li>I offer available morning slots</li>
+      <li>You join a session adapted to your needs</li>
+    </ul>
+  </div>
 
-    .hero-card {
-      background: #f9faf9;
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      padding: 22px;
-    }
+  <div class="lang-es">
+    <h2>Cómo funciona</h2>
+    <ul>
+      <li>Me dices tu nivel y disponibilidad</li>
+      <li>Te ofrezco horarios disponibles por la mañana</li>
+      <li>Te unes a sesiones adaptadas a tus necesidades</li>
+    </ul>
+  </div>
+</div>
 
-    .hero-card h2 {
-      margin-top: 0;
-      font-size: 1.2rem;
-    }
+<!-- WHAT YOU GET -->
+<div class="section">
+  <div class="lang-en">
+    <h2>What you get</h2>
+    <ul>
+      <li>Speaking-focused classes</li>
+      <li>Real correction and feedback</li>
+      <li>Small groups or individual classes</li>
+    </ul>
+  </div>
 
-    .hero-card ul {
-      margin: 0;
-      padding-left: 20px;
-      color: var(--muted);
-    }
+  <div class="lang-es">
+    <h2>Qué incluye</h2>
+    <ul>
+      <li>Clases centradas en hablar</li>
+      <li>Corrección real en tiempo real</li>
+      <li>Grupos reducidos o clases individuales</li>
+    </ul>
+  </div>
+</div>
 
-    .sections {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      margin-top: 18px;
-    }
+<!-- LOCATION -->
+<div class="section">
+  <div class="lang-en">
+    <h2>Location</h2>
+    <p>Central Las Palmas, near Triana and Vegueta.<br>
+    (Replace with: “Just off Calle Mayor de Triana”)</p>
+  </div>
 
-    section.card {
-      background: var(--card);
-      border: 1px solid var(--border);
+  <div class="lang-es">
+    <h2>Ubicación</h2>
+    <p>Centro de Las Palmas, cerca de Triana y Vegueta.<br>
+    (Ej: “junto a la Calle Mayor de Triana”)</p>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<div class="section">
+  <div class="lang-en">
+    <h2>About me</h2>
+    <p>Native British English teacher with 16 years’ experience in Spain. I run my own academy and specialise in helping students speak fluently and confidently.</p>
+  </div>
+
+  <div class="lang-es">
+    <h2>Sobre mí</h2>
+    <p>Profesor nativo británico con 16 años de experiencia en España. Dirijo mi propia academia y me especializo en ayudar a hablar inglés con fluidez.</p>
+  </div>
+</div>
+
+<a class="cta whatsapp fixed-cta">Message me on WhatsApp</a>
+
+</div>
+
+<script>
+const phone = "34646555552";
+
+const messages = {
+  en: "Hi, I'm interested in your English speaking classes in Triana. What availability do you have?",
+  es: "Hola, estoy interesado en tus clases de inglés en Triana. ¿Qué horarios tienes disponibles?"
+};
+
+function setLang(lang) {
+  document.body.classList.toggle("show-es", lang === "es");
+  document.getElementById("enBtn").classList.toggle("active", lang === "en");
+  document.getElementById("esBtn").classList.toggle("active", lang === "es");
+
+  document.querySelectorAll(".whatsapp").forEach(el => {
+    el.href = `https://wa.me/${phone}?text=${encodeURIComponent(messages[lang])}`;
+  });
+}
+
+document.getElementById("enBtn").onclick = () => setLang("en");
+document.getElementById("esBtn").onclick = () => setLang("es");
+
+setLang("en");
+</script>
+
+</body>
+</html>
